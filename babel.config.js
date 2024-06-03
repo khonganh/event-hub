@@ -3,12 +3,12 @@ module.exports = function (api) {
   return {
     presets: ['module:metro-react-native-babel-preset'],
     plugins: [
-      // [
-      //   'module-resolver',
-      //   {
-      //     root: ['./src'],
-      //   },
-      // ],
+      [
+        'module-resolver',
+        {
+          root: ['./src'],
+        },
+      ],
       [
         'babel-plugin-root-import',
         {

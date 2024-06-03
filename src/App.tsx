@@ -24,6 +24,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import AppNavigation from '~/navigation/AppNavigation';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -63,7 +65,9 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <Text>Home Screen</Text>
+    <NavigationContainer>
+      <AppNavigation />
+    </NavigationContainer>
     // <SafeAreaView style={backgroundStyle}>
     //   <StatusBar
     //     barStyle={isDarkMode ? 'light-content' : 'dark-content'}

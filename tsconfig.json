@@ -5,8 +5,15 @@
     "paths": {
       "~/*": ["src/*"]
     },
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "jsx": "react-native",
+    "moduleResolution": "node"
   },
-  "exclude": ["node_modules"],
-  "include": ["index.js", "src", "test"]
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

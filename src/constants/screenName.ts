@@ -1,0 +1,5 @@
+export const screenName = {
+  SPLASH_SCREEN: 'SPLASH_SCREEN',
+  HOME_SCREEN: 'HOME_SCREEN',
+  SIGN_IN_SCREEN: 'SIGN_IN_SCREEN',
+};
