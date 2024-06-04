@@ -2,8 +2,7 @@ import {Text, StyleProp, TextStyle, Platform} from 'react-native';
 import React from 'react';
 import {globalStyles} from '~/styles/globalStyles';
 import {appColors} from '~/constants/appColors';
-
-// import {fontFamilies} from '../constants/fontFamilies';
+import {fontFamilies} from '~/constants/fontFamilies';
 
 interface Props {
   text: string;
@@ -30,11 +29,11 @@ const TextComponent = (props: Props) => {
           color: color ?? appColors.text,
           flex: flex ?? 0,
           fontSize: size ? size : title ? 24 : fontSizeDefault,
-          // fontFamily: font
-          //   ? font
-          //   : title
-          //   ? fontFamilies.medium
-          //   : fontFamilies.regular,
+          fontFamily: font
+            ? font
+            : title
+            ? fontFamilies.medium
+            : fontFamilies.regular,
         },
         styles,
       ]}>
