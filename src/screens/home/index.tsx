@@ -1,13 +1,16 @@
 import * as React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
+import MainLayout from '~/components/mainLayout';
 
 interface HomeScreenProps {}
 
 const HomeScreen = (props: HomeScreenProps) => {
   return (
-    <View style={styles.container}>
-      <Text>HomeScreen</Text>
-    </View>
+    <MainLayout>
+      <View style={styles.container}>
+        <Text>HomeScreen</Text>
+      </View>
+    </MainLayout>
   );
 };
 
