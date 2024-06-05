@@ -13,10 +13,33 @@ interface Props {
   styles?: StyleProp<TextStyle>;
   title?: boolean;
   numberOfLine?: number;
+  fontWeight?:
+    | 'normal'
+    | 'bold'
+    | '100'
+    | '200'
+    | '300'
+    | '400'
+    | '500'
+    | '600'
+    | '700'
+    | '800'
+    | '900'
+    | undefined;
 }
 
 const TextComponent = (props: Props) => {
-  const {text, size, flex, font, color, styles, title, numberOfLine} = props;
+  const {
+    text,
+    size,
+    flex,
+    font,
+    color,
+    styles,
+    title,
+    numberOfLine,
+    fontWeight,
+  } = props;
 
   const fontSizeDefault = Platform.OS === 'ios' ? 16 : 14;
 
@@ -29,6 +52,7 @@ const TextComponent = (props: Props) => {
           color: color ?? appColors.text,
           flex: flex ?? 0,
           fontSize: size ? size : title ? 24 : fontSizeDefault,
+          fontWeight: fontWeight,
           fontFamily: font
             ? font
             : title
