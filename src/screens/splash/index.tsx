@@ -1,34 +1,26 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  ImageBackground,
-  Image,
-  ActivityIndicator,
-} from 'react-native';
+import {ActivityIndicator, ImageBackground, StyleSheet} from 'react-native';
+import Animated, {useSharedValue, withTiming} from 'react-native-reanimated';
 import Space from '~/components/space';
 import {appColors} from '~/constants/appColors';
-import {screenName} from '~/constants/screenName';
-import {navigate} from '~/services/navigationService';
 
 const SplashScreen = () => {
-  React.useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      navigate(screenName.ONBOARD_SCREEN);
-    }, 1500);
+  const opacity = useSharedValue(1);
 
-    return () => clearTimeout(timeoutId);
-  }, []);
+  React.useEffect(() => {
+    opacity.value = withTiming(0, {duration: 1500});
+  }, [opacity]);
 
   return (
     <ImageBackground
       source={require('~/assets/images/background.png')}
-      style={styles.container}>
-      <Image
+      style={[styles.container]}>
+      <Animated.Image
         source={require('~/assets/images/logo_horizontal.png')}
-        style={styles.logo}
+        style={[styles.logo, {opacity: opacity}]}
       />
-      <Space height={8} />
-      <ActivityIndicator color={appColors.primary} animating />
+      {/* <Space height={8} /> */}
+      {/* <ActivityIndicator color={appColors.primary} animating /> */}
     </ImageBackground>
   );
 };

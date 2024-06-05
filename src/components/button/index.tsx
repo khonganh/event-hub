@@ -62,7 +62,7 @@ const ButtonCustom = (props: ButtonCustomProps) => {
         <TextComponent
           text={text}
           color={textColor ?? appColors.white}
-          styles={[
+          style={[
             textStyles,
             {
               marginLeft: icon ? 12 : 0,

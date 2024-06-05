@@ -37,12 +37,12 @@ const OnBoardScreen = () => {
     if (index < 2) {
       ref?.current?.next();
     } else {
-      navigate(screenName.HOME_SCREEN);
+      navigate(screenName.SIGN_IN_SCREEN);
     }
   };
 
   const handleSkip = () => {
-    navigate(screenName.HOME_SCREEN);
+    navigate(screenName.SIGN_IN_SCREEN);
   };
 
   const renderItem = ({item}: any) => {
@@ -68,9 +68,9 @@ const OnBoardScreen = () => {
         <Pagination.Basic
           progress={progress}
           data={listBoard}
-          dotStyle={{backgroundColor: appColors.gray4, borderRadius: 50}}
-          containerStyle={{gap: 8}}
-          activeDotStyle={{backgroundColor: appColors.white, borderRadius: 50}}
+          dotStyle={styles.dot}
+          containerStyle={styles.pagination}
+          activeDotStyle={styles.dotActive}
         />
         <ButtonCustom text="Next" onPress={handleNext} />
       </HStack>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   pagination: {
-    marginBottom: 16,
+    gap: 8,
   },
   buttonContainer: {
     justifyContent: 'space-between',
@@ -98,5 +98,13 @@ const styles = StyleSheet.create({
     bottom: '5%',
     left: 24,
     right: 24,
+  },
+  dot: {
+    backgroundColor: appColors.gray4,
+    borderRadius: 50,
+  },
+  dotActive: {
+    backgroundColor: appColors.white,
+    borderRadius: 50,
   },
 });
