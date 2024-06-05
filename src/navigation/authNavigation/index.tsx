@@ -13,7 +13,11 @@ const AuthNavigation = () => {
         name={screenName.ONBOARD_SCREEN}
         component={OnBoardScreen}
       />
-      <Stack.Screen name={screenName.SIGN_IN_SCREEN} component={SignInScreen} />
+      <Stack.Screen
+        name={screenName.SIGN_IN_SCREEN}
+        component={SignInScreen}
+        // options={{gestureEnabled: false}}
+      />
     </Stack.Navigator>
   );
 };

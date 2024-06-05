@@ -10,7 +10,7 @@ import HStack from '~/components/hstack';
 import {appColors} from '~/constants/appColors';
 import {appInfo} from '~/constants/appInfo';
 import {screenName} from '~/constants/screenName';
-import {navigate} from '~/services/navigationService';
+import {setRoot} from '~/services/navigationService';
 
 const OnBoardScreen = () => {
   const ref = React.useRef<ICarouselInstance>(null);
@@ -37,12 +37,12 @@ const OnBoardScreen = () => {
     if (index < 2) {
       ref?.current?.next();
     } else {
-      navigate(screenName.SIGN_IN_SCREEN);
+      setRoot(screenName.SIGN_IN_SCREEN);
     }
   };
 
   const handleSkip = () => {
-    navigate(screenName.SIGN_IN_SCREEN);
+    setRoot(screenName.SIGN_IN_SCREEN);
   };
 
   const renderItem = ({item}: any) => {

@@ -2,6 +2,7 @@ import {useNavigation, useTheme, DrawerActions} from '@react-navigation/native';
 import * as React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import {fontFamilies} from '~/constants/fontFamilies';
 
 interface HeaderProps {
   title: string;
@@ -37,7 +38,7 @@ const Header = (props: HeaderProps) => {
           style={styles.backIcon}
           hitSlop={{left: 5, top: 5, right: 5, bottom: 5}}
           onPress={handleGoBack}>
-          <Icon name="chevron-left" size={28} color={colors.text} />
+          <Icon name="arrow-left" size={22} color={colors.text} />
         </TouchableOpacity>
       )}
       <Text style={[styles.title, {color: colors.text}]}>{title}</Text>
@@ -56,9 +57,10 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
   },
   title: {
-    fontSize: 16,
-    fontWeight: '700',
-    paddingLeft: 8,
+    fontSize: 24,
+    fontWeight: '500',
+    paddingLeft: 12,
+    fontFamily: fontFamilies.medium,
   },
   backIcon: {
     // position: 'absolute',

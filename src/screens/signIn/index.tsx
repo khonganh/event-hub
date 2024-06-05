@@ -1,17 +1,16 @@
 import * as React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
-import Header from '~/components/header';
+import {View, StyleSheet, Image} from 'react-native';
 import MainLayout from '~/components/mainLayout';
+import Space from '~/components/space';
 
-interface SignInScreenProps {}
-
-const SignInScreen = (props: SignInScreenProps) => {
+const SignInScreen = () => {
   return (
     <MainLayout>
-      <Header title="Sign In" canGoBack />
-      <View style={styles.container}>
-        <Text>SignInScreen</Text>
-      </View>
+      <Space height={20} />
+      <Image
+        style={styles.logo}
+        source={require('~/assets/images/logo_vertical.png')}
+      />
     </MainLayout>
   );
 };
@@ -19,5 +18,9 @@ const SignInScreen = (props: SignInScreenProps) => {
 export default SignInScreen;
 
 const styles = StyleSheet.create({
-  container: {},
+  logo: {
+    height: 114,
+    objectFit: 'contain',
+    alignSelf: 'center',
+  },
 });
