@@ -64,7 +64,11 @@ const OnBoardScreen = () => {
       />
 
       <HStack style={styles.buttonContainer}>
-        <ButtonCustom text="Skip" onPress={handleSkip} />
+        <ButtonCustom
+          text="Skip"
+          onPress={handleSkip}
+          textColor={appColors.white}
+        />
         <Pagination.Basic
           progress={progress}
           data={listBoard}
@@ -72,7 +76,11 @@ const OnBoardScreen = () => {
           containerStyle={styles.pagination}
           activeDotStyle={styles.dotActive}
         />
-        <ButtonCustom text="Next" onPress={handleNext} />
+        <ButtonCustom
+          text="Next"
+          onPress={handleNext}
+          textColor={appColors.white}
+        />
       </HStack>
     </View>
   );

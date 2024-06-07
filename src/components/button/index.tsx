@@ -1,14 +1,9 @@
-import {
-  View,
-  StyleProp,
-  ViewStyle,
-  TextStyle,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleProp, ViewStyle, TextStyle, TouchableOpacity} from 'react-native';
 import React, {ReactNode} from 'react';
 import {globalStyles} from '~/styles/globalStyles';
 import {appColors} from '~/constants/appColors';
 import TextComponent from '../text';
+import {StyleSheet} from 'react-native';
 
 interface ButtonCustomProps {
   icon?: ReactNode;
@@ -39,49 +34,57 @@ const ButtonCustom = (props: ButtonCustomProps) => {
     disable,
   } = props;
 
+  const mergeStyleButton = StyleSheet.flatten([
+    globalStyles.button,
+    globalStyles.shadow,
+    {
+      backgroundColor: color
+        ? color
+        : disable
+        ? appColors.gray4
+        : appColors.primary,
+      marginBottom: 17,
+    },
+    styles,
+  ]);
+
+  const mergeStyleText: TextStyle = StyleSheet.flatten([
+    {
+      marginLeft: icon ? 22 : 0,
+      fontSize: 16,
+      textAlign: 'center',
+      fontWeight: '500',
+    },
+    textStyles,
+  ]);
+
   return type === 'primary' ? (
-    <View style={{alignItems: 'center'}}>
-      <TouchableOpacity
-        disabled={disable}
-        onPress={onPress}
-        style={[
-          globalStyles.button,
-          globalStyles.shadow,
-          {
-            backgroundColor: color
-              ? color
-              : disable
-              ? appColors.gray4
-              : appColors.primary,
-            marginBottom: 17,
-            width: '90%',
-          },
-          styles,
-        ]}>
-        {icon && iconFlex === 'left' && icon}
-        <TextComponent
-          text={text}
-          color={textColor ?? appColors.white}
-          style={[
-            textStyles,
-            {
-              marginLeft: icon ? 12 : 0,
-              fontSize: 16,
-              textAlign: 'center',
-            },
-          ]}
-          flex={icon && iconFlex === 'right' ? 1 : 0}
-          font={textFont}
-        />
-        {icon && iconFlex === 'right' && icon}
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity
+      disabled={disable}
+      onPress={onPress}
+      style={mergeStyleButton}>
+      {icon && iconFlex === 'left' && icon}
+      <TextComponent
+        text={text}
+        color={textColor ?? appColors.white}
+        styles={mergeStyleText}
+        flex={icon && iconFlex === 'right' ? 1 : 0}
+        font={textFont}
+      />
+      {icon && iconFlex === 'right' && icon}
+    </TouchableOpacity>
   ) : (
     <TouchableOpacity onPress={onPress}>
       <TextComponent
         flex={1}
         text={text}
-        color={type === 'link' ? appColors.primary : appColors.white}
+        color={
+          textColor
+            ? textColor
+            : type === 'link'
+            ? appColors.primary
+            : appColors.text
+        }
       />
     </TouchableOpacity>
   );

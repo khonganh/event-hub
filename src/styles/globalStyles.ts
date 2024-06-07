@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {appColors} from '~/constants/appColors';
+import {fontFamilies} from '~/constants/fontFamilies';
 
 export const globalStyles = StyleSheet.create({
   container: {
@@ -8,7 +9,7 @@ export const globalStyles = StyleSheet.create({
   },
 
   text: {
-    // fontFamily: fontFamilies.regular,
+    fontFamily: fontFamilies.regular,
     fontSize: 14,
     color: appColors.text,
   },
@@ -20,8 +21,8 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: appColors.white,
     paddingHorizontal: 16,
     paddingVertical: 16,
-    // minHeight: 56,
     flexDirection: 'row',
+    minHeight: 56,
   },
   shadow: {
     shadowColor: 'rgba(0,0,0,0.5)',
