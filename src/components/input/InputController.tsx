@@ -22,7 +22,6 @@ interface InputControllerProps extends TextInputProps {
   name: string;
   label?: string;
   control?: Control<any, any>;
-  defaultValue?: string;
   placeholder?: string;
   errorMessage?: string;
   helperMessage?: string;
@@ -52,7 +51,6 @@ const InputController = ({
   name,
   label,
   control,
-  defaultValue,
   helperMessage,
   isInline,
   _controller,
@@ -63,7 +61,11 @@ const InputController = ({
 }: ControlledFormInputProps | UncontrolledFormInputProps) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const isPasswordInput = props.secureTextEntry;
-  const {fieldState} = useController({control, name});
+  const {fieldState} = useController({
+    control,
+    name,
+  });
+
   const err = fieldState?.error?.message;
 
   const renderSecureEntryToggle = () => (
@@ -99,7 +101,7 @@ const InputController = ({
         {control ? (
           <Controller
             control={control}
-            defaultValue={defaultValue ?? ''}
+            // defaultValue={formState?.defaultValues?.[name] ?? ''}
             render={
               render
                 ? render

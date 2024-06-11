@@ -3,6 +3,14 @@ import {View, StyleSheet, ViewProps} from 'react-native';
 
 interface HStackProps extends ViewProps {
   children: React.ReactNode;
+  justifyContent?:
+    | 'center'
+    | 'flex-start'
+    | 'flex-end'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly'
+    | undefined;
 }
 
 const HStack = (props: HStackProps) => {

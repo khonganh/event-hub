@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import {
   StyleSheet,
   Image,
@@ -15,26 +17,49 @@ import Space from '~/components/space';
 import TextComponent from '~/components/text';
 import Feather from 'react-native-vector-icons/Feather';
 import {appColors} from '~/constants/appColors';
-import {globalStyles} from '~/styles/globalStyles';
 import Section from '~/components/section';
-import {Switch} from 'react-native-gesture-handler';
+import HStack from '~/components/hstack';
+import RememberMe from './components/RememberMe';
+
+type FormValues = {
+  email: string;
+  password: string;
+  isRemember: boolean;
+};
 
 const SignInScreen = () => {
+  const schema = yup
+    .object()
+    .shape({
+      email: yup.string().email().required(),
+      password: yup.string().required(),
+      isRemember: yup.boolean(),
+    })
+    .required();
+
   const {control, handleSubmit} = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+      isRemember: false,
+    },
     mode: 'all',
+    resolver: yupResolver(schema),
   });
 
   const onSubmit = (data: any) => {
     console.log('data', data);
   };
 
+  console.log('render');
+
   return (
-    <MainLayout>
+    <MainLayout isHaveBackground>
       <KeyboardAvoidingView
         style={styles.container}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView
-          style={globalStyles.container}
+          style={styles.scrollView}
           keyboardShouldPersistTaps="handled">
           <Image
             style={styles.logo}
@@ -45,9 +70,6 @@ const SignInScreen = () => {
               control={control}
               name="email"
               placeholder="Email"
-              _controller={{
-                rules: {required: 'This field is required'},
-              }}
               inputLeftElement={
                 <Feather name="mail" size={22} color={appColors.gray} />
               }
@@ -57,35 +79,24 @@ const SignInScreen = () => {
               control={control}
               name="password"
               placeholder="Password"
-              _controller={{
-                rules: {required: true},
-              }}
               secureTextEntry
               inputLeftElement={
                 <Feather name="lock" size={22} color={appColors.gray} />
               }
             />
             <Space height={18} />
-            <Switch
-              value={true}
-              style={{transform: [{scaleX: 0.8}, {scaleY: 0.8}]}}
-              onValueChange={value => {}}
-            />
+            <HStack justifyContent="space-between">
+              <RememberMe control={control} name="isRemember" />
+              <ButtonCustom text="Forgot Password?" />
+            </HStack>
             <Space height={18} />
             <ButtonCustom
               text="SIGN IN"
               type="primary"
               iconFlex="right"
-              styles={{marginHorizontal: 24}}
+              styles={styles.button}
               icon={
-                <View
-                  style={{
-                    backgroundColor: appColors.blue,
-                    padding: 4,
-                    borderRadius: 50,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
+                <View style={styles.viewIcon}>
                   <Feather
                     name="arrow-right"
                     size={16}
@@ -117,5 +128,18 @@ const styles = StyleSheet.create({
   },
   section: {
     marginTop: 30,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  viewIcon: {
+    backgroundColor: appColors.blue,
+    padding: 4,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    marginHorizontal: 24,
   },
 });

@@ -76,7 +76,6 @@ const ButtonCustom = (props: ButtonCustomProps) => {
   ) : (
     <TouchableOpacity onPress={onPress}>
       <TextComponent
-        flex={1}
         text={text}
         color={
           textColor
