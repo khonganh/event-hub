@@ -84,6 +84,7 @@ const ButtonCustom = (props: ButtonCustomProps) => {
             ? appColors.primary
             : appColors.text
         }
+        styles={mergeStyleText}
       />
     </TouchableOpacity>
   );

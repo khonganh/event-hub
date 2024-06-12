@@ -6,13 +6,14 @@ import TextComponent from '../text';
 interface SectionProps {
   title: string;
   children: React.ReactNode;
+  marginTop?: number;
   sectionStyles?: StyleProp<ViewStyle>;
 }
 
 const Section = (props: SectionProps) => {
-  const {title, children, sectionStyles} = props;
+  const {title, children, sectionStyles, marginTop} = props;
   return (
-    <View style={[styles.container, sectionStyles]}>
+    <View style={[styles.container, {marginTop}, sectionStyles]}>
       <TextComponent text={title} title fontWeight="500" />
       <Space height={20} />
       {children}

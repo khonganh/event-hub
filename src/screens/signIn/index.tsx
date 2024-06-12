@@ -16,10 +16,12 @@ import MainLayout from '~/components/mainLayout';
 import Space from '~/components/space';
 import TextComponent from '~/components/text';
 import Feather from 'react-native-vector-icons/Feather';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import {appColors} from '~/constants/appColors';
 import Section from '~/components/section';
 import HStack from '~/components/hstack';
 import RememberMe from './components/RememberMe';
+import {fontFamilies} from '~/constants/fontFamilies';
 
 type FormValues = {
   email: string;
@@ -65,7 +67,7 @@ const SignInScreen = () => {
             style={styles.logo}
             source={require('~/assets/images/logo_vertical.png')}
           />
-          <Section title="Sign In" sectionStyles={styles.section}>
+          <Section title="Sign In" marginTop={30}>
             <InputController
               control={control}
               name="email"
@@ -87,7 +89,10 @@ const SignInScreen = () => {
             <Space height={18} />
             <HStack justifyContent="space-between">
               <RememberMe control={control} name="isRemember" />
-              <ButtonCustom text="Forgot Password?" />
+              <ButtonCustom
+                text="Forgot Password?"
+                textStyles={styles.buttonForgot}
+              />
             </HStack>
             <Space height={18} />
             <ButtonCustom
@@ -106,6 +111,46 @@ const SignInScreen = () => {
               }
               onPress={handleSubmit(onSubmit)}
             />
+            <TextComponent
+              text="OR"
+              color={appColors.gray4}
+              styles={styles.orText}
+            />
+            <Space height={18} />
+            <ButtonCustom
+              text="Login with Google"
+              type="primary"
+              styles={styles.button}
+              color={appColors.white}
+              textColor={appColors.text}
+              textFont={fontFamilies.regular}
+              textStyles={styles.textButton}
+              iconFlex="left"
+              icon={
+                <AntDesign name="google" size={24} color={appColors.text} />
+              }
+            />
+            <ButtonCustom
+              text="Login with Facebook"
+              type="primary"
+              styles={styles.button}
+              color={appColors.white}
+              textColor={appColors.text}
+              textFont={fontFamilies.regular}
+              textStyles={styles.textButton}
+              iconFlex="left"
+              icon={
+                <Feather name="facebook" size={24} color={appColors.text} />
+              }
+            />
+            <HStack justifyContent="center">
+              <TextComponent text={"Don't have an account? "} size={15} />
+              <ButtonCustom
+                text="Sign up"
+                textStyles={styles.buttonSignUp}
+                type="link"
+              />
+            </HStack>
           </Section>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -126,9 +171,6 @@ const styles = StyleSheet.create({
     objectFit: 'contain',
     alignSelf: 'center',
   },
-  section: {
-    marginTop: 30,
-  },
   scrollView: {
     flex: 1,
   },
@@ -141,5 +183,19 @@ const styles = StyleSheet.create({
   },
   button: {
     marginHorizontal: 24,
+  },
+  buttonForgot: {
+    fontSize: 14,
+    fontWeight: '400',
+  },
+  orText: {
+    textAlign: 'center',
+  },
+  textButton: {
+    fontWeight: '400',
+  },
+  buttonSignUp: {
+    fontSize: 15,
+    fontWeight: '400',
   },
 });
