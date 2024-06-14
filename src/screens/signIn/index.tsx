@@ -53,8 +53,6 @@ const SignInScreen = () => {
     console.log('data', data);
   };
 
-  console.log('render');
-
   return (
     <MainLayout isHaveBackground>
       <KeyboardAvoidingView
